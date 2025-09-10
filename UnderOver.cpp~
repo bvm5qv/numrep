@@ -1,0 +1,47 @@
+#include <iostream>
+#include <string>
+
+
+enum class types : unsigned char
+  {
+   float,
+   double,
+   int,
+  };
+
+const std::string& type_to_str(types type)
+{
+  switch(type)
+    {
+    case types::float : return "float";
+    case types::double : return "double";
+    case types::int : return "int";
+    }
+}
+      
+
+template <typename T>
+void findUnderOverFlow(int numIterations)
+{
+    T under = (T)1;
+    T over = (T)1;
+
+    const std::string& type_name = type_to_str(T);
+    std::cout << type_name << ":\n";
+    
+    for(int i = 0; i < numIterations; ++i)
+    {
+        under /= 2;
+        over *= 2;
+        std::cout << "loop number: " << i << ", under: " << under << ", over: "             << over << '\n';
+    } 
+}
+
+
+int main()
+{
+    findUnderOverFlow<float>(100000);
+    findUnderOverFloat<int>(100000);
+
+    return 0;
+}
